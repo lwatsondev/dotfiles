@@ -26,6 +26,7 @@ for_window {
     [app_id="firefox" title="^Library$"] floating enable
     [app_id="firefox" title="^Extension: .*"] floating enable
     [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+    [app_id="firefox" title="Picture-in-Picture"] floating enable
     [app_id="(?i)thunar"] floating enable
     [app_id="file-roller"] floating enable
     [app_id="ncmpcpp"] floating enable
@@ -41,5 +42,5 @@ for_window {
 assign {
     [app_id="firefox"] 1
     [app_id="org.telegram.desktop"] 2
-    [app_id="Slack"] 8
+    [app_id="com.mattermost.Desktop"] 8
 }
