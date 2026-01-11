@@ -1,7 +1,7 @@
 [project]
 name = "sway-python-deps"
 version = "0.1.0"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "dbus-fast>=2.44.5",
     "i3ipc>=2.2.1",
