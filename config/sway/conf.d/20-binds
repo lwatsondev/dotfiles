@@ -5,8 +5,8 @@ set {
     $term alacritty
     $browser $BROWSER
     $menu fuzzel | xargs swaymsg exec --
-    # https://github.com/TheReverend403/scripts/blob/main/wpste.fish
-    $wpste wpste --copy --notify
+    # https://github.com/lwatsondev/rehome/blob/main/scripts/share.sh
+    $share share.sh --copy --notify
 }
 
 # Launch menu
@@ -24,8 +24,8 @@ bindsym {
     $mod+i exec $term --title=weechat -e weechat
     $mod+m exec $term --class=ncmpcpp --option window.dimensions.columns=115 --option window.dimensions.lines=30 -e ncmpcpp
     $mod+Shift+e exec bemoji -t
-    Print exec $wpste -t area
-    Shift+Print exec $wpste -e -t area
+    Print exec $share -t area
+    Shift+Print exec $share -e -t area
     # Workaround for swayidle bug that occasionally doesn't run resume actions.
     $mod+Escape exec swaymsg "output '*' power on"
 }
@@ -192,22 +192,22 @@ mode "$mode_session" bindsym {
 
 #
 # Screen capture + upload:
-# https://github.com/TheReverend403/scripts/blob/main/wpste.fish
+# https://github.com/TheReverend403/scripts/blob/main/share.fish
 #
 set $mode_screenshot Capture: (a) area, (s) screen, (o) output, (w) select window, (c) active window
 mode "$mode_screenshot" bindsym {
-    a exec $wpste -t area; mode "default"
-    s exec $wpste -t screen; mode "default"
-    o exec $wpste -t output; mode "default"
-    w exec $wpste -t window; mode "default"
-    c exec $wpste -t active; mode "default"
+    a exec $share -t area; mode "default"
+    s exec $share -t screen; mode "default"
+    o exec $share -t output; mode "default"
+    w exec $share -t window; mode "default"
+    c exec $share -t active; mode "default"
 
     # Edit before upload.
-    Shift+a exec $wpste -e -t area; mode "default"
-    Shift+s exec $wpste -e -t screen; mode "default"
-    Shift+o exec $wpste -e -t output; mode "default"
-    Shift+w exec $wpste -e -t window; mode "default"
-    Shift+c exec $wpste -e -t active; mode "default"
+    Shift+a exec $share -e -t area; mode "default"
+    Shift+s exec $share -e -t screen; mode "default"
+    Shift+o exec $share -e -t output; mode "default"
+    Shift+w exec $share -e -t window; mode "default"
+    Shift+c exec $share -e -t active; mode "default"
 
     Return mode "default"
     Escape mode "default"
