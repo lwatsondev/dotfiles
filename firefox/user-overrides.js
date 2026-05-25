@@ -38,3 +38,5 @@ user_pref("browser.tabs.cardPreview.enabled", false);
 user_pref("browser.tabs.hoverPreview.enabled", false);
 
 user_pref("browser.urlbar.suggest.trending", false);
+
+user_pref("layout.css.color-mix.enabled", true);

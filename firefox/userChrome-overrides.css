@@ -3,14 +3,20 @@ Overrides
 */
 
 :root {
-    --autocomplete-popup-highlight-background: #8c54fe !important;
-    --focus-outline-color: #8c54fe !important;
-    --tab-line-color: var(--focus-outline-color) !important;
-    --lwt-toolbarbutton-icon-fill-attention: #8c54fe !important;
+    --custom-purple: #8c54fe;
+    /* --autocomplete-popup-highlight-background: var(--custom-purple) !important; */
+    --focus-outline-color: var(--custom-purple) !important;
+    --tab-line-color: var(--custom-purple) !important;
+    --toolbarbutton-icon-fill-attention: color-mix(in srgb, var(--custom-purple) 60%, white) !important;
     --url-match-color: #fdbe25 !important;
     --link-color: #858585 !important;
-    --urlbarView-highlight-background: #8c54fe !important;
-    --chrome-content-separator-color: var(--toolbar-bg-color) !important;
+    --urlbarview-background-color-selected: #37383A !important;
+    --urlbarview-background-color-hover: color-mix(in srgb, var(--urlbarview-background-color-selected) 60%, black) !important;
+    --panel-border-color: var(--custom-purple) !important;
+}
+
+menupopup:is(menupopup, panel):where(:not([type="arrow"])) {
+    --panel-border-color: var(--custom-purple) !important;
 }
 
 #urlbar:is([focused])>#urlbar-background,
@@ -18,8 +24,8 @@ Overrides
     border-color: var(--focus-outline-color) !important;
 }
 
-.urlbarView-row:not([selected]) .urlbarView-title strong,
-.urlbarView-row:not([selected]) .urlbarView-url strong {
+.urlbarView-row .urlbarView-title strong,
+.urlbarView-row .urlbarView-url strong {
     color: var(--url-match-color) !important;
 }
 
