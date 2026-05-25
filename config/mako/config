@@ -41,55 +41,37 @@ border-color=#0089CC
 
 ## Docker
 # https://github.com/luc-ass/docker-telegram-notifier/blob/main/templates.js
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^▶️ .+ started(.+/)?.+:.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~="^▶️ .+ started(.+/)?.+:.+"]
 border-color=#82b414
 
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^(🔴|⏹️) .+ stopped( with exit code)?(.+/)?.+:?.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~="^(🔴|⏹️) .+ stopped( with exit code)?(.+/)?.+:?.+"]
 border-color=#ff7184
 
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^✅ .+ healthy(.+/)?.+:.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~="^✅ .+ healthy(.+/)?.+:.+"]
 border-color=#bce368
 
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^⚠ .+ unhealthy!(.+/)?.+:.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~="^⚠ .+ unhealthy!(.+/)?.+:.+"]
 border-color=#f92645
 default-timeout=0
 ##
 
-## Uptime Kuma
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~=".+(healthcheck passing|✅ Up)+"]
+## Uptime Kuma / Gatus
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+(healthcheck passing|✅ Up)+"]
 border-color=#bce368
 
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~=".+(healthcheck failed|🔴 Down).+"]
-border-color=#f92645
-default-timeout=0
-##
-
-## Healthchecks
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^🟢 The check .+"]
-border-color=#bce368
-
-[desktop-entry=org.telegram.desktop summary~="^^(Private )?Monitoring @ .+" body~="^🔴 The check .+"]
-border-color=#f92645
-default-timeout=0
-##
-
-## Icinga
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^✅ .+: .+ is .+ on .+"]
-border-color=#bce368
-
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~="^❌ .+: .+ is .+ on .+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+(healthcheck failed|🔴 Down).+"]
 border-color=#f92645
 default-timeout=0
 ##
 
 ## S.M.A.R.T
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~=".+The following warning/error was logged by the smartd daemon:.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+The following warning/error was logged by the smartd daemon:.+"]
 border-color=#f92645
 default-timeout=0
 ##
 
 ## ZFS. Only matches if errors are > 0.
-[desktop-entry=org.telegram.desktop summary~="^(Private )?Monitoring @ .+" body~=".+scrub repaired \\w+ in [0-9:]+ with [1-9]\d* errors.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+scrub repaired \\w+ in [0-9:]+ with [1-9]\d* errors.+"]
 border-color=#f92645
 default-timeout=0
 ##
