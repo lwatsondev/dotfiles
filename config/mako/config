@@ -65,14 +65,22 @@ default-timeout=0
 ##
 
 ## S.M.A.R.T
-[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+The following warning/error was logged by the smartd daemon:.+"]
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+S\\.M\\.A\\.R\\.T\\. CRITICAL.+"]
 border-color=#f92645
+default-timeout=0
+
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+S\\.M\\.A\\.R\\.T\\. WARNING.+"]
+border-color=#f0c040
 default-timeout=0
 ##
 
-## ZFS. Only matches if errors are > 0.
-[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+scrub repaired \\w+ in [0-9:]+ with [1-9]\d* errors.+"]
+## ZFS
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+ZFS CRITICAL.+"]
 border-color=#f92645
+default-timeout=0
+
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+ZFS WARNING.+"]
+border-color=#f0c040
 default-timeout=0
 ##
 
