@@ -1,6 +1,9 @@
 ## Video ##
 hwdec=auto
 scale=ewa_lanczossharp
+deband=yes
+hdr-peak-percentile=99.995
+hdr-contrast-recovery=0.30
 video-sync=display-resample
 interpolation
 
@@ -35,7 +38,7 @@ sub-auto=fuzzy
 sub-use-margins
 demuxer-mkv-subtitle-preroll
 blend-subtitles=yes
-sub-ass-hinting=native
+sub-hinting=native
 sub-font=sans-serif
 
 [extension.webm]
