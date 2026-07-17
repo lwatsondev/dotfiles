@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 # https://gist.github.com/SidharthArya/f4d80c246793eb61be0ae928c9184406?permalink_comment_id=4405799#gistcomment-4405799
 
 import i3ipc

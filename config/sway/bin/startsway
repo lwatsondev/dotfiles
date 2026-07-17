@@ -1,40 +1,40 @@
-#!/bin/bash
-set -eu
+#!/bin/bash -eu
 
-# https://github.com/Ventto/sway-services/tree/ventto-dev
+# Don't start a new Sway session if one is already running.
+if systemctl --user --quiet is-active sway-session.target; then
+  echo "A Sway session is already active. Refusing to start another." >&2
+  exit 1
+fi
 
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP="${XDG_SESSION_DESKTOP:-sway}"
 export XDG_SESSION_TYPE=wayland
 
-GPG_TTY="$(tty)"
-export GPG_TTY
+# Clear failed units left over from a previous session.
+systemctl --user reset-failed
 
-# reset failed state of all units relevant to this session.
-for unit in $(systemctl --user --no-legend --state=failed --plain list-units | cut -f1 -d' '); do
-    partof="$(systemctl --user show -p PartOf --value "$unit")"
-    for target in sway-session.target wayland-session.target graphical-session.target; do
-        if [ "$partof" = "$target" ]; then
-            systemctl --user reset-failed "$unit"
-            break
-        fi
-    done
-done
+session_env=(
+  PATH
+  XDG_CURRENT_DESKTOP
+  XDG_SESSION_DESKTOP
+  XDG_SESSION_TYPE
+  XDG_CONFIG_HOME
+  XDG_DATA_HOME
+  XDG_CACHE_HOME
+  XDG_STATE_HOME
+)
+systemctl --user import-environment "${session_env[@]}"
 
-sys_env=$(systemctl --user show-environment | cut -d'=' -f 1 | sort)
-user_env=$(env | cut -d'=' -f 1 | sort)
-new_env=$(echo "$sys_env" | comm -13 - <(echo "$user_env"))
-shared_env=$(echo "$sys_env" | comm -12 - <(echo "$user_env"))
+# Set theme env vars before Sway starts so other services see them too.
+"${XDG_CONFIG_HOME:-$HOME/.config}"/sway/bin/import-gsettings.sh
 
-# shellcheck disable=SC2086
-systemctl --user import-environment $new_env $shared_env
+# Stop everything bound to the session instead of crash-looping against a dead compositor.
+session_cleanup() {
+  systemctl --user start --job-mode=replace-irreversibly sway-session-shutdown.target
+  systemctl --user unset-environment "${session_env[@]}" GTK_THEME XCURSOR_THEME XCURSOR_SIZE
+}
+trap 'session_cleanup; exit' INT TERM
 
-# Ensure theme environment vars are set before Sway starts so they work properly with the other services.
-"$XDG_CONFIG_HOME"/sway/bin/import-gsettings.sh
+systemctl --wait --user start sway.service || true
 
-# Then start the service
-systemctl --wait --user start sway.service
-
-# Clean up environment
-# shellcheck disable=SC2086
-systemctl --user unset-environment $new_env $shared_env
+session_cleanup

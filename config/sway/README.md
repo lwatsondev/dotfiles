@@ -1,6 +1,10 @@
-# References
+# tl;dr
+
+Sway and related services run under systemd, started by `bin/startsway`.
+
+## References
 
 * https://github.com/alebastr/sway-systemd
-* https://github.com/Madic-/Sway-DE
+* https://github.com/Ventto/sway-services
 * https://github.com/xdbob/sway-services
-    * https://github.com/Ventto/sway-services/tree/ventto-dev
+* https://github.com/Madic-/Sway-DE

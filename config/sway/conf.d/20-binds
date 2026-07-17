@@ -3,7 +3,7 @@
 set {
     $mod Mod4
     $term alacritty
-    $browser $BROWSER
+    $browser $XDG_CONFIG_HOME/sway/bin/browser
     $menu fuzzel | xargs swaymsg exec --
     # https://github.com/lwatsondev/rehome/blob/main/scripts/share.sh
     $share share.sh --copy --notify

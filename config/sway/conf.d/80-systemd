@@ -1,5 +1,8 @@
+# shellcheck disable=SC2148
 # vi: ft=swayconfig
 
+# XDG_* vars so dbus-activated services (xdg-desktop-portal) pick the right backend.
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK I3SOCK \
-    && systemd-notify --ready \
-    && systemctl --user start sway-session.target
+  XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
+  && systemd-notify --ready \
+  && systemctl --user start sway-session.target

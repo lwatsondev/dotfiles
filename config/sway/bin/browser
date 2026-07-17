@@ -1,0 +1,5 @@
+#!/bin/sh -eu
+
+# $BROWSER isn't visible to sway so resolve the actual freedesktop default browser instead.
+desktop_file=$(xdg-settings get default-web-browser)
+exec gtk-launch "${desktop_file%.desktop}"
