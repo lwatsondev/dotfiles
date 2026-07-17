@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set +o history
+
+# shellcheck source=/dev/null
+[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
