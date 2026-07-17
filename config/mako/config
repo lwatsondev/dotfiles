@@ -82,14 +82,25 @@ default-timeout=0
 [desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+ZFS WARNING.+"]
 border-color=#f0c040
 default-timeout=0
+
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+ZFS HEALTHY.+"]
+border-color=#bce368
+##
+
+## borgmatic
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+borgmatic.+backup started.+"]
+border-color=#8c54fe
+
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+borgmatic.+backup finished.+"]
+border-color=#82b414
+
+[desktop-entry=org.telegram.desktop summary~="^Monitoring @ .+" body~=".+borgmatic.+backup failed.+"]
+border-color=#f92645
+default-timeout=0
 ##
 
 [app-name=weechat]
 border-color=#0B11BE
 
-[app-name=wpste urgency=normal]
+[app-name=share.sh urgency=normal]
 border-color=#82b414
-
-[app-name=borgmatic urgency=critical]
-border-color=#f92645
-default-timeout=0
