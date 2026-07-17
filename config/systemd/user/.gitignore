@@ -5,3 +5,4 @@ pulseaudio*
 !mpd.socket
 pipewire-session-manager.service
 
+*.requires
