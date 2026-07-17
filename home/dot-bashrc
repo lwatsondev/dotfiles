@@ -6,8 +6,18 @@ fi
 
 # PAM has no mechanism to apply environment.d to login sessions:
 # https://github.com/systemd/systemd/issues/7641
-# shellcheck disable=SC1090
-source <(systemctl --user show-environment 2>/dev/null | sed 's/^/export /')
+if command -v systemctl &> /dev/null && systemctl --user show-environment &> /dev/null; then
+  # shellcheck disable=SC1090
+  source <(systemctl --user show-environment | sed 's/^/export /')
+else
+  # No systemd --user, e.g. Termux.
+  set -a
+  for f in "${XDG_CONFIG_HOME:-$HOME/.config}"/environment.d/*.conf; do
+    # shellcheck disable=SC1090
+    [[ -f $f ]] && source "$f" 2> /dev/null
+  done
+  set +a
+fi
 
 fish_path=$(command -v fish)
 
