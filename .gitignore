@@ -1,3 +1,10 @@
 .idea
 .vscode
+.claude/
+.mcp.json
+.playwright-mcp
 **/*.bak
+*.swp
+*.swo
+*~
+__pycache__/
