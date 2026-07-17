@@ -1,0 +1,107 @@
+set nocompatible
+
+if &shell =~# 'fish$'
+    set shell=/bin/bash
+endif
+
+" {{{ Plugins
+if empty(glob($MYVIMDIR . '/autoload/plug.vim'))
+    silent !curl -fLo $MYVIMDIR/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin($MYVIMDIR . '/plugged')
+
+if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+    autocmd VimEnter * PlugInstall | q
+endif
+
+Plug 'joshdick/onedark.vim'
+Plug 'tpope/vim-sensible'
+Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
+
+call plug#end()
+
+packadd! comment
+packadd! editorconfig
+packadd! matchit
+packadd! hlyank
+" }}}
+
+" {{{ Appearance
+if has('termguicolors')
+    set termguicolors
+endif
+
+let g:lightline = {
+            \ 'colorscheme': 'onedark',
+            \ }
+
+set background=dark
+colorscheme onedark
+
+filetype plugin indent on
+syntax on
+" }}}
+
+set cursorline
+set wrapscan
+set report=0
+set synmaxcol=200
+
+set number
+set noshowmode
+set showcmd
+set nomodeline
+
+set splitbelow
+set splitright
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Lower from the 4s default so nohlsearch (below) reacts promptly.
+set updatetime=300
+packadd! nohlsearch
+
+set ttyfast
+
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+
+" Skip over SSH: no Wayland socket to reach, so trying just produces W23.
+if empty($SSH_CONNECTION)
+    set clipboard=unnamedplus
+endif
+set pastetoggle=<F3>
+
+" {{{ Keep backup/swap/undo/viminfo under XDG_STATE_HOME.
+let s:state = (empty($XDG_STATE_HOME) ? $HOME . '/.local/state' : $XDG_STATE_HOME) . '/vim'
+for s:dir in ['backup', 'swap', 'undo']
+    call mkdir(s:state . '/' . s:dir, 'p')
+endfor
+
+" Trailing // makes vim name these after the file's full path, avoiding
+" collisions between same-named files from different directories.
+set backup
+let &backupdir = s:state . '/backup//'
+set backupext=-vimbackup
+set backupskip=
+let &directory = s:state . '/swap//'
+set updatecount=100
+set undofile
+let &undodir = s:state . '/undo//'
+let &viminfofile = s:state . '/viminfo'
+" }}}
+
+let mapleader = ","
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Right> <C-w>l
