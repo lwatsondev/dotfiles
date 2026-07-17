@@ -1,13 +1,15 @@
 #!/bin/bash
 
-fish_path=$(command -v fish)
-
 if [[ $- != *i* ]]; then
   return
 fi
 
+# PAM has no mechanism to apply environment.d to login sessions:
+# https://github.com/systemd/systemd/issues/7641
+# shellcheck disable=SC1090
+source <(systemctl --user show-environment 2>/dev/null | sed 's/^/export /')
+
+fish_path=$(command -v fish)
+
 # Drop into fish only if the parent process is not fish. Allows dropping directly into bash from fish without having to use --norc
 [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" ]] && [[ -z ${BASH_EXECUTION_STRING} ]] && [[ -x $fish_path ]] && exec "$fish_path"
-
-# shellcheck source=/dev/null
-. "$HOME/.local/share/../bin/env"
