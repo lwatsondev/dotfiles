@@ -1,0 +1,8 @@
+#!/bin/sh -eu
+
+# TTY pinentry when there's no graphical session, GUI one otherwise.
+if [ -z "${DISPLAY:-}" ] && [ -z "${WAYLAND_DISPLAY:-}" ]; then
+  exec /usr/bin/pinentry-tty "$@"
+else
+  exec /usr/bin/pinentry-gnome3 "$@"
+fi
