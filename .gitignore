@@ -1,5 +1,6 @@
 .idea
 .vscode
+home/.stow-local-ignore
 .claude/
 .mcp.json
 .playwright-mcp

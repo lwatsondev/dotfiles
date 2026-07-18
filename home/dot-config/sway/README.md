@@ -1,6 +1,6 @@
 # tl;dr
 
-Sway and related services run under systemd, started by `bin/startsway`.
+Sway and related services run under systemd, started by `startsway` (in `~/.local/bin`).
 
 ## References
 
