@@ -11,12 +11,14 @@ if command -v systemctl &> /dev/null && systemctl --user show-environment &> /de
   source <(systemctl --user show-environment | sed 's/^/export /')
 else
   # No systemd --user, e.g. Termux.
-  set -a
   for f in "${XDG_CONFIG_HOME:-$HOME/.config}"/environment.d/*.conf; do
-    # shellcheck disable=SC1090
-    [[ -f $f ]] && source "$f" 2> /dev/null
+    if [[ -f $f ]]; then
+      set -a
+      # shellcheck disable=SC1090
+      source "$f" 2> /dev/null
+      set +a
+    fi
   done
-  set +a
 fi
 
 fish_path=$(command -v fish)
